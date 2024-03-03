@@ -6,6 +6,12 @@
   - Microsoft.AspNetCore.OpenApi
  
 - ENTITY FRAMEWORK (comandos para no terminal)
-  - dotnet tool install --global dotnet-ef
+  - **dotnet tool install --global dotnet-ef**
     ou
-  - dotnet tool update --global dotnet-ef
+  - **dotnet tool update --global dotnet-ef**
+
+- Criação de MIGRATIONS e config das tabelas do BANCO DE DADOS
+  - Criação das migrations:
+    - **dotnet ef migrations add "nome da migration (sem as áspas)"**
+  - Criação das tabelas no banco de dados
+    - **dotnet ef database update**
