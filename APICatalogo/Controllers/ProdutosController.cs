@@ -2,6 +2,7 @@
 using APICatalogo.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace APICatalogo.Controllers;
 
@@ -50,5 +51,20 @@ public class ProdutosController : ControllerBase
 
         // retorna 201 e especifica a URI para acessar a rota do produto criado
         return new CreatedAtRouteResult("ObterProduto", new { id = produto.ProdutoId }, produto);
+    }
+
+    [HttpPut("{id:int}")]
+    public ActionResult Put(int id, Produto produto)
+    {
+        if(id != produto.ProdutoId)
+        {
+            return BadRequest();
+        }
+
+        // informa ao contexto que a entidade do produto está em um estado modificado 
+        _context.Entry(produto).State = EntityState.Modified;
+        _context.SaveChanges();
+
+        return Ok(produto);
     }
 }
