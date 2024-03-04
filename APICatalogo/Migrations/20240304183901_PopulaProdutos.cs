@@ -12,7 +12,7 @@ namespace APICatalogo.Migrations
         {
             mb.Sql("Insert into Produtos (Nome,Descricao,Preco,ImageUrl,Estoque,DataCadastro,CategoriaId) values ('Coke','Refri de Cola 350ml',5.45,'coke.jpg',50,now(),1)");
             mb.Sql("Insert into Produtos (Nome,Descricao,Preco,ImageUrl,Estoque,DataCadastro,CategoriaId) values ('Sanduba','Sanduba de atum',8.90,'sand.jpg',50,now(),1)");
-            mb.Sql("Insert into Produtos (Nome,Descricao,Preco,ImageUrl,Estoque,DataCadastro,CategoriaId) values ('Pudim','Pudim de leite',4.30,'pudim.jpg',50,now(),1)");
+            mb.Sql("Insert into Produtos (Nome,Descricao,Preco,ImagesUrl,Estoque,DataCadastro,CategoriaId) values ('Pudim','Pudim de leite',4.30,'pudim.jpg',50,now(),1)");
         }
 
         /// <inheritdoc />
