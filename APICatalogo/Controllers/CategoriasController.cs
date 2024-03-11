@@ -21,12 +21,19 @@ public class CategoriasController : ControllerBase
     [HttpGet]
     public ActionResult<IEnumerable<Categoria>> Get()
     {
-        var categorias = _context.Categorias.AsNoTracking().ToList();
-        if (categorias is null)
+        try
         {
-            return NotFound("Categorias não encontradas");
+            var categorias = _context.Categorias.AsNoTracking().ToList();
+            if (categorias is null)
+            {
+                return NotFound("Categorias não encontradas");
+            }
+            return categorias;
         }
-        return categorias;
+        catch (Exception)
+        {
+            return StatusCode(StatusCodes.Status500InternalServerError, "Ocorreuu um problema ao tratar a solicitação.");
+        }
     }
 
     [HttpGet("{id:int}", Name = "ObterCategoria")]
