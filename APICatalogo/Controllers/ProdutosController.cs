@@ -18,20 +18,15 @@ public class ProdutosController : ControllerBase
     }
 
     [HttpGet]
-    public ActionResult<IEnumerable<Produto>> Get()
+    public async Task<ActionResult<IEnumerable<Produto>>> GetAsync()
     {
-        var produtos = _context.Produtos.AsNoTracking().ToList();
-        if(produtos is null)
-        {
-            return NotFound("Produtos não encontrado");
-        }
-        return produtos;
+        return await _context.Produtos.AsNoTracking().ToListAsync();
     }
 
     [HttpGet("{id:int}", Name="ObterProduto")]
-    public ActionResult<Produto> Get(int id)
+    public async Task<ActionResult<Produto>> GetAsync(int id)
     {
-        var produto = _context.Produtos.AsNoTracking().FirstOrDefault(p => p.ProdutoId == id);
+        var produto = await _context.Produtos.AsNoTracking().FirstOrDefaultAsync(p => p.ProdutoId == id);
 
         if(produto == null)
         {
