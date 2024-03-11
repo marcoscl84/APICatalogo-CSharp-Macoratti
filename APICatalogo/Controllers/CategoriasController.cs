@@ -1,5 +1,6 @@
 ﻿using APICatalogo.Context;
 using APICatalogo.Models;
+using APICatalogo.Sevices;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -12,11 +13,30 @@ public class CategoriasController : ControllerBase
 {
 
     private readonly AppDbContext _context;
+    //private readonly IMeuServico _meuServico;
 
-    public CategoriasController(AppDbContext context)
+    public CategoriasController(AppDbContext context, IMeuServico meuServico)
     {
         _context = context;
+        //_meuServico = meuServico;
     }
+
+
+    // injeção de dependência por inferência
+    [HttpGet("UsandoFromServices/{nome}")]
+    public ActionResult<string> GetSaudacaoFromServices([FromServices] IMeuServico meuServico,
+                                                                            string nome)
+    {
+        return meuServico.Saudacao(nome);
+    }
+    [HttpGet("SemFromServices/{nome}")]
+    public ActionResult<string> GetSaudacaoSemFromServices(IMeuServico meuServico,
+                                                                        string nome)
+    {
+        return meuServico.Saudacao(nome);
+    }
+
+
 
     [HttpGet]
     public ActionResult<IEnumerable<Categoria>> Get()
