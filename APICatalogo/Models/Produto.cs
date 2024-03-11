@@ -11,12 +11,12 @@ public class Produto
     [Key]
     public int ProdutoId { get; set; }
 
-    [Required]
-    [StringLength(80)]
+    [Required(ErrorMessage = "O nome é obrigatório!")]
+    [StringLength(80, ErrorMessage = "O nome deve ter entre 5 e 80 caracteres.", MinimumLength = 5)]
     public string? Nome { get; set; }
 
     [Required]
-    [StringLength(300)]
+    [StringLength(80, ErrorMessage = "A descrição deve ter no máximo {1} caracteres.")]
     public string? Descricao { get; set; }
 
     [Required]
@@ -24,7 +24,7 @@ public class Produto
     public decimal Preco {  get; set; }
 
     [Required]
-    [StringLength(300)]
+    [Range(10, 200, ErrorMessage = "A URL deve ter entre {1} e {2} caracteres.")]
     public string? ImageUrl { get; set; }
     public float Estoque { get; set; }
     public DateTime DataCadastro { get; set; }
